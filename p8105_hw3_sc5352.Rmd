@@ -163,7 +163,7 @@ combine_data_new =
   select(-minute, -minute_value)
 
 ggplot(combine_data_new, aes(x = age, y = total_act, color = sex)) + 
-  geom_line() + 
+  geom_point() + 
   facet_grid(.~education) +
   geom_smooth(se = FALSE) +
   labs(
@@ -171,6 +171,7 @@ ggplot(combine_data_new, aes(x = age, y = total_act, color = sex)) +
     x = "Age",
     y = "Total Acitivity"
   )
+
 ```
 In general, as age increases, both men and women decrease their total activities. However, in the `high school equivalent` group, women increase their acitvities before 40 first and then decrease. Both men and women with `less than high school` education have the highest total activities among three groups.
 
@@ -183,7 +184,7 @@ combine_data_plot =
   ggplot(aes(x = minute, y = minute_value, color = sex)) + 
   geom_point(alpha = 0.5) + 
   facet_grid(.~education) +
-  geom_smooth(se = FALSE) +
+  geom_smooth() +
   labs(
     title = "Minute vs Minute Acitivity",
     x = "Minute",
