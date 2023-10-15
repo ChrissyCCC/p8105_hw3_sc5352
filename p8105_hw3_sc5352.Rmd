@@ -131,12 +131,15 @@ combine_data =
 ##### Produce a reader-friendly table for the number of men and women in each education category, and create a visualization of the age distributions for men and women in each education category. Comment on these items. 
 ```{r}
 combine_data_readfriendly = 
-  combine_data |>
+  covar |>
+  filter(age >= 21) |>
   group_by(sex, education) |>
-  summarize(n_obs = n()) 
+  tally()|>
+  pivot_wider(names_from = sex,values_from = n)|>
+  knitr::kable()
 combine_data_readfriendly
 ```
-`Female` with `More than high school` has the highest number with 84960. However, `Female` with `High school equivalent` has the lowest number with 33120.
+`Female` with `More than high school` has the highest number with 59. However, `Female` with `High school equivalent` has the lowest number with 23.
 
 ```{r}
 combine_data_visual = 
